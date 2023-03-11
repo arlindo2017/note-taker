@@ -62,17 +62,14 @@ app.delete('/api/notes/:id', (req, res) => {
   
         // Write the filtered notes back to the file
         writeToFile('./db/db.json', filteredNotes);
-  
         res.json(`Note with id ${id} was deleted successfully 🚀`);
       })
-      .catch((err) => console.error(err));
   });
 
 //Route all requests to index.html, this needs to be after ALL ROUTES !!!
 app.get('*', (req, res) =>
     res.sendFile(path.join(__dirname, '/public/index.html'))
 );
-
 
 //Server Port
 app.listen(PORT, () =>
