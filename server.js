@@ -55,16 +55,16 @@ app.delete('/api/notes/:id', (req, res) => {
     console.info(`${req.method} request received to delete note with id ${id}`);
   
     readFromFile('./db/db.json')
-      .then((data) => JSON.parse(data))
-      .then((notes) => {
-        // Filter out the note with the specified id
-        const filteredNotes = notes.filter((note) => note.id !== id);
-  
-        // Write the filtered notes back to the file
-        writeToFile('./db/db.json', filteredNotes);
-        res.json(`Note with id ${id} was deleted successfully 🚀`);
-      })
-  });
+    .then((data) => JSON.parse(data))
+    .then((notes) => {
+    // Filter out the note with the specified id
+    const filteredNotes = notes.filter((note) => note.id !== id);
+
+    // Write the filtered notes back to the file
+    writeToFile('./db/db.json', filteredNotes);
+    res.json(`Note with id ${id} was deleted successfully 🚀`);
+    })
+});
 
 //Route all requests to index.html, this needs to be after ALL ROUTES !!!
 app.get('*', (req, res) =>
